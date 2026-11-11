@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo interactivo conectado a la API pública DummyJSON">
+  <title>ShopLab | Catálogo interactivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="ShopLab inicio"><span>✦</span> ShopLab</a>
+      <span class="api-badge">API pública · DummyJSON</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div>
+        <p class="eyebrow">Laboratorio de peticiones HTTP</p>
+        <h1>Descubre. Filtra.<br><em>Comparte.</em></h1>
+        <p class="hero-copy">Un catálogo interactivo para explorar productos y publicar tus propias ideas usando JavaScript.</p>
+      </div>
+      <div class="hero-orb" aria-hidden="true"><span>✦</span></div>
+    </section>
+
+    <section class="container dashboard">
+      <div class="toolbar">
+        <label class="search">
+          <span aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="Buscar productos..." autocomplete="off">
+        </label>
+        <label class="select-label">
+          <span>Categoría</span>
+          <select id="category-select">
+            <option value="all">Todas las categorías</option>
+          </select>
+        </label>
+        <button id="refresh-button" class="button button-light" type="button">↻ Actualizar</button>
+      </div>
+      <div class="request-strip" aria-live="polite">
+        <span class="status-dot"></span>
+        <span id="status-message">Cargando catálogo...</span>
+        <span class="request-count">GET <b id="get-count">0</b> · POST <b id="post-count">0</b></span>
+      </div>
+      <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      <p id="empty-message" class="empty hidden">No hay productos que coincidan con tu búsqueda.</p>
+    </section>
+
+    <section class="container forms-section">
+      <div class="section-heading">
+        <p class="eyebrow">Peticiones POST</p>
+        <h2>Tu turno para participar</h2>
+        <p>Los envíos son simulados por DummyJSON y sirven para demostrar cómo crear datos desde el navegador.</p>
+      </div>
+      <div class="forms-grid">
+        <form id="review-form" class="card-form">
+          <div class="form-icon">✎</div>
+          <h3>Publicar una reseña</h3>
+          <p>Envía una opinión sobre la tienda.</p>
+          <label>Tu nombre<input name="userName" required maxlength="40" placeholder="Ej. Alex"></label>
+          <label>Título<input name="title" required maxlength="70" placeholder="Una compra genial"></label>
+          <label>Mensaje<textarea name="body" required maxlength="240" rows="3" placeholder="Cuéntanos tu experiencia..."></textarea></label>
+          <button class="button button-dark" type="submit">Publicar reseña <span>→</span></button>
+          <p class="form-feedback" id="review-feedback" role="status"></p>
+        </form>
+
+        <form id="product-form" class="card-form accent-form">
+          <div class="form-icon">＋</div>
+          <h3>Añadir un producto</h3>
+          <p>Propón un producto para el catálogo.</p>
+          <label>Nombre del producto<input name="title" required maxlength="70" placeholder="Ej. Mochila urbana"></label>
+          <label>Precio (€)<input name="price" required min="0.01" step="0.01" type="number" placeholder="29.99"></label>
+          <label>Categoría
+            <select name="category">
+              <option value="beauty">Belleza</option>
+              <option value="fragrances">Perfumes</option>
+              <option value="furniture">Hogar</option>
+              <option value="laptops">Tecnología</option>
+            </select>
+          </label>
+          <button class="button button-accent" type="submit">Enviar propuesta <span>→</span></button>
+          <p class="form-feedback" id="product-feedback" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><span>ShopLab / Proyecto de consumo de API</span><span>Datos de prueba proporcionados por DummyJSON</span></div>
+  </footer>
+</body>
+</html>
